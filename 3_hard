@@ -1,0 +1,37 @@
+data_structure = [
+    [1, 2, 3],
+    {'a': 4, 'b': 5},
+    (6, {'cube': 7, 'drum': 8}),
+    "Hello",
+    ((), [{(2, 'Urban', ('Urban2', 35))}])
+]
+
+
+for i in range(len(list(data_structure))): print(list(data_structure)[i], type(list(data_structure)[i]), sep=' -> ')
+
+def sum(data_structure):
+  summa = 0
+  l = 0
+  k = list(type(i) for i in list(data_structure))
+  m = list(data_structure)
+  for i in k:
+    if i == int or i == float:
+      summa += m[l]
+    elif i == str or i == bool:
+      summa += len(m[l])
+    elif i == list or i == set:
+      summa += sum(m[l])
+    elif i == dict:
+      for k, v in m[l].items():
+        if type(k) == int or type(k) == float: summa += k
+        else: summa += len(k)
+        if type(v) == int or type(v) == float: summa += v
+        else: summa += len(v)
+    elif i == tuple:
+      summa += sum(m[l])
+      print('prod ->', summa)
+    else: print(m[l], type(m[l]), '123213213213123213123213123')
+    l += 1
+  return summa
+
+sum(data_structure)
